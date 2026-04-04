@@ -3,11 +3,14 @@ name: Deploy fieldghost.sh
 on:
   push:
     branches:
-      - main # Deploys automatically when pushed/merged to main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -15,9 +18,9 @@ jobs:
       - name: Connect to Tailscale
         uses: tailscale/github-action@v2
         with:
-          oauth-client-id: ""
-          oauth-secret: ""
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
 
       - name: Setup SSH
         run: |
@@ -33,14 +36,8 @@ jobs:
       - name: Build Site and Update Nginx
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            # 1. Go to the staging folder
             cd ~/fieldghost-staging
-            
-            # 2. Run Arise to build the static site
             ./arise
-            
-            # 3. Move the generated HTML to Nginx (Requires sudo, so we pipe it)
             sudo rsync -avz --delete public/ /var/www/fieldghost.sh/
-            
             echo "Deployment successful!"
           EOF
