@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout Code
@@ -33,19 +33,12 @@ jobs:
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:~/fieldghost-staging/
 
-     - name: Build Site and Update Nginx
+      - name: Build Site and Update Nginx
         run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            # 1. Fail immediately if any command returns an error
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'SSH_EOF'
             set -e
-            
             cd ~/fieldghost-staging
-            
-            # 2. Build the site
             ./arise
-            
-            # 3. Sync to Nginx WITHOUT sudo
             rsync -avz --delete public/ /var/www/fieldghost.sh/
-            
             echo "Deployment successful!"
-          EOF
+          SSH_EOF
