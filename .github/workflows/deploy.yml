@@ -37,8 +37,12 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
+            export PATH=$PATH:/usr/bin
+
             cd ~/fieldghost-staging
             ./arise build
+
             rsync -avz --delete arise-out/ /var/www/fieldghost.sh/
+
             echo "Deployment successful!"
           EOF
