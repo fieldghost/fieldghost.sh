@@ -1,0 +1,43 @@
+name: Deploy fieldghost.sh
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Sync Repo to Brain
+        run: |
+          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:~/fieldghost-staging/
+
+      - name: Build Site and Update Nginx
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            cd ~/fieldghost-staging
+            ./arise
+            sudo rsync -avz --delete public/ /var/www/fieldghost.sh/
+            echo "Deployment successful!"
+          EOF
