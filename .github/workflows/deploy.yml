@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Connect to Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@v4
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
@@ -33,11 +33,19 @@ jobs:
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:~/fieldghost-staging/
 
-      - name: Build Site and Update Nginx
+     - name: Build Site and Update Nginx
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            # 1. Fail immediately if any command returns an error
+            set -e
+            
             cd ~/fieldghost-staging
+            
+            # 2. Build the site
             ./arise
-            sudo rsync -avz --delete public/ /var/www/fieldghost.sh/
+            
+            # 3. Sync to Nginx WITHOUT sudo
+            rsync -avz --delete public/ /var/www/fieldghost.sh/
+            
             echo "Deployment successful!"
           EOF
