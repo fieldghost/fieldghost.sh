@@ -40,7 +40,7 @@ jobs:
             export PATH=$PATH:/usr/bin
 
             cd ~/fieldghost-staging
-            ./arise build -f
+            yes | ./arise build -f
 
             rsync -avz --delete arise-out/ /var/www/fieldghost.sh/
 
