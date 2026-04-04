@@ -35,10 +35,10 @@ jobs:
 
       - name: Build Site and Update Nginx
         run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'SSH_EOF'
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             set -e
             cd ~/fieldghost-staging
             ./arise
             rsync -avz --delete public/ /var/www/fieldghost.sh/
             echo "Deployment successful!"
-          SSH_EOF
+          EOF
