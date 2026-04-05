@@ -64,4 +64,3 @@ Development occurs on my Arch Linux desktop ("monolith") using Vim. The standard
 ---
 
 *Note: This is a private repository designed for personal use and infrastructure practice.*
-```
