@@ -1,50 +1,123 @@
 body {
-    background-color: #121212;
-    color: #00ff00;
-    font-family: monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  background-color: #121212;
+  color: #00ff00;
+  font-family: monospace;
+  /* FIX: Allow the page to grow beyond the screen height to enable scrolling */
+  min-height: 100vh;
+  margin: 0;
+
+  /* FIX: Center horizontally, but let content start at the top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Removed justify-content: center; */
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #333;
-    padding: 2rem 4rem;
-    background-color: #1a1a1a;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #333;
+  padding: 2rem 4rem;
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+
+  /* FIX: Increase top margin to clear the navbar safely, and add bottom margin */
+  margin-top: 100px;
+  margin-bottom: 40px;
+
+  /* FIX: Add a max-width so your cards don't stretch forever on ultra-wide monitors */
+  max-width: 1200px;
+  width: 80%;
 }
 
-h1 { 
-    margin-top: 0;
+h1 {
+  margin-top: 0;
 }
 
 .navigation {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    background-color: #0a0a0a;
-    border-bottom: 1px solid #333;
-    margin-bottom: 2rem;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background-color: #0a0a0a;
+  border-bottom: 1px solid #333;
+  margin-bottom: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .navigation a {
-    color: #555;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: color 0.3s ease;
+  color: #555;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-.navigation a:hover, nav a.active {
-    color: #00ff00;
+.navigation a:hover,
+nav a.active {
+  color: #00ff00;
 }
 
+/* --- Media Page Specifics --- */
+
+.intro-text {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+/* Responsive CSS Grid for the Cards */
+.media-grid {
+  display: grid;
+  /* This automatically creates columns that fit the screen size */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* The Card Container (Clickable) */
+.media-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-decoration: none; /* Removes the default blue link underline */
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* The 3D Hover Effect */
+.media-card:hover {
+  transform: translateY(-5px); /* Moves the card up slightly */
+  box-shadow: 0 10px 20px rgba(0, 255, 0, 0.15); /* Green tinted shadow */
+  border-color: #00ff00;
+}
+
+/* Updated for actual image tags */
+.media-logo {
+  width: 100%;
+  height: 120px;
+  object-fit: contain; /* Ensures the logo scales without stretching */
+  object-position: center;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background-color: #121212; /* Keeps a dark background if the image is transparent PNG */
+}
+
+.media-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #00ff00;
+}
+
+.media-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.4;
+}
