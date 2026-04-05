@@ -10,7 +10,9 @@ body {
 }
 
 .container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid #333;
     padding: 2rem 4rem;
     background-color: #1a1a1a;
@@ -46,6 +48,3 @@ h1 {
     color: #00ff00;
 }
 
-#main-body {
-  display: flex;
-}
