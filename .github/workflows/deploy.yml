@@ -1,4 +1,4 @@
-name: Deploy fieldghost.sh
+name: Deploy to Brain
 
 on:
   push:
@@ -8,11 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Connect to Tailscale
@@ -22,27 +20,22 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
 
-      - name: Setup SSH
+      - name: Set up SSH and Deploy via Rsync
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-
-      - name: Sync Repo to Brain
-        run: |
-          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:~/fieldghost-staging/
-
-      - name: Build Site and Update Nginx
-        run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            set -e
-            export PATH=$PATH:/usr/bin
-
-            cd ~/fieldghost-staging
-            yes | ./arise build -f
-
-            rsync -avz --delete arise-out/ /var/www/fieldghost.sh/
-
-            echo "Deployment successful!"
-          EOF
+          
+          # Add the server to known hosts to bypass the yes/no prompt
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+          
+          # Sync files over SSH
+          rsync -avz --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ $SERVER_USER@$SERVER_IP:/var/www/fieldghost.sh/
