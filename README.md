@@ -1,4 +1,3 @@
-```markdown
 # fieldghost.sh
 
 This repository contains the source code and CI/CD deployment pipeline for my self-hosted personal website and learning hub.
