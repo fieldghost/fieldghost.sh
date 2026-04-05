@@ -1,6 +1,3 @@
-Here is the complete Markdown documentation for your repository. You can copy this entire block and paste it directly into a `README.md` file in the root of your `fieldghost.sh` project. 
-
-```markdown
 # fieldghost.sh
 
 This repository contains the source code and CI/CD deployment pipeline for my self-hosted personal website. 
