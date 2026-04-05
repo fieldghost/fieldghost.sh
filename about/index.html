@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About - Fieldghost</title>
     <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/scripts/theme.js"></script>
   </head>
   <body>
     <div id="main-body">
@@ -14,7 +15,9 @@
         <a href="/media">fieldghost::media</a>
         <a href="/charity">fieldghost::charity</a>
         <a href="/about" class="active">fieldghost::about</a>
+        <a href="/settings">fieldghost::settings</a>
       </div>
+
       <div class="container">
         <h1>About fieldghost</h1>
 
@@ -33,12 +36,119 @@
         </p>
 
         <h2>My Principles</h2>
-        <p>
-          <strong
-            >Freedom to learn | Open Source | Non-profit | Charity | Coding |
-            Learning | Developer | Linux</strong
-          >
-        </p>
+        <div class="media-grid" style="margin-bottom: 3rem">
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Freedom to learn</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Knowledge should be accessible to everyone without barriers,
+                  paywalls, or restrictions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Open Source</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Code should be public, auditable, and collaborative to foster
+                  trust and innovation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Non-profit</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Driven by passion and community value, rather than financial
+                  gain or corporate metrics.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Charity</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Leveraging technical skills to give back to the community and
+                  support meaningful causes.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Coding</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  The art of problem-solving and building the tools required for
+                  a better digital future.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Learning</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  A continuous, lifelong journey of curiosity, growth, and
+                  breaking things to see how they work.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Developer</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Building resilient solutions and openly sharing that knowledge
+                  with the ecosystem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-card">
+            <div class="principle-card-inner">
+              <div class="principle-card-front">
+                <h3>Linux</h3>
+              </div>
+              <div class="principle-card-back">
+                <p>
+                  Embracing the philosophy of modularity, absolute freedom, and
+                  complete user control.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <h2>How to Support</h2>
         <p>If you find value here, you can support the mission by:</p>
@@ -64,5 +174,16 @@
         </ul>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var cards = document.querySelectorAll(".principle-card");
+        cards.forEach(function (card) {
+          card.addEventListener("click", function () {
+            this.classList.toggle("flipped");
+          });
+        });
+      });
+    </script>
   </body>
 </html>

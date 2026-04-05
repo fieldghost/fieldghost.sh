@@ -1,6 +1,23 @@
 /* --- THEME VARIABLES --- */
 :root {
-  /* Terminal Mode (Default) */
+  /* Normal Mode / Ghost Mode (Default) */
+  --bg-color: #f0efeb;
+  --text-color: #3a403d;
+  --text-muted: #7e8682;
+  --nav-bg: rgba(240, 239, 235, 0.6);
+  --nav-text: #9ba39e;
+  --container-bg: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(255, 255, 255, 0.6);
+  --accent-color: #7d9d89;
+  --accent-shadow: rgba(125, 157, 137, 0.4);
+  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  --font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --glass-blur: blur(12px);
+  --border-radius: 8px;
+}
+
+html.terminal-mode {
+  /* Terminal Mode */
   --bg-color: #121212;
   --text-color: #00ff00;
   --text-muted: #ccc;
@@ -16,23 +33,6 @@
   --border-radius: 0px;
 }
 
-body.ghost-mode {
-  /* Ghost Mode */
-  --bg-color: #F0EFEB; /* Lighter, earthy parchment */
-  --text-color: #3A403D; /* Smooth deep charcoal */
-  --text-muted: #7E8682; /* Ethereal stone grey */
-  --nav-bg: rgba(240, 239, 235, 0.6); /* Transparent */
-  --nav-text: #9BA39E;
-  --container-bg: rgba(255, 255, 255, 0.3); /* Transparent */
-  --border-color: rgba(255, 255, 255, 0.6);
-  --accent-color: #7D9D89; /* Ethereal sage green */
-  --accent-shadow: rgba(125, 157, 137, 0.4);
-  --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Smooth, hovering shadow */
-  --font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Smooth */
-  --glass-blur: blur(12px); /* Ethereal transparency effect */
-  --border-radius: 8px; /* Softer, smoother edges */
-}
-
 /* --- STYLES --- */
 body {
   background-color: var(--bg-color);
@@ -43,7 +43,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
 }
 
 .container {
@@ -61,6 +63,11 @@ body {
   transition: all 0.6s ease;
 }
 
+.container-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 h1 {
   margin-top: 0;
 }
@@ -114,14 +121,18 @@ h1 {
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.6s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.6s ease;
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .media-card:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 10px 20px var(--accent-shadow); 
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--accent-shadow);
   border-color: var(--accent-color);
 }
 
@@ -152,9 +163,6 @@ h1 {
 
 /* --- TOGGLE BUTTON STYLES --- */
 .theme-switch {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--accent-color);
@@ -163,10 +171,193 @@ h1 {
   cursor: pointer;
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
-  z-index: 100;
 }
 
 .theme-switch:hover {
   background-color: var(--accent-color);
   color: var(--bg-color);
+}
+
+/* --- PRINCIPLE FLIP CARDS --- */
+.principle-card {
+  background-color: transparent;
+  perspective: 1000px; /* Creates the 3D space for the flip */
+  min-height: 180px;
+  cursor: pointer;
+}
+
+.principle-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); /* Smooth flipping physics */
+  transform-style: preserve-3d;
+}
+
+/* The class we will toggle with JavaScript */
+.principle-card.flipped .principle-card-inner {
+  transform: rotateY(180deg);
+}
+
+.principle-card-front,
+.principle-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+
+  /* Added opacity to the transition */
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.6s ease,
+    opacity 0.3s ease;
+}
+
+/* --- THE BUG FIX --- */
+.principle-card-front {
+  transform: rotateY(0deg) translateZ(1px); /* translateZ prevents 3D flickering */
+  z-index: 2;
+  opacity: 1;
+}
+
+.principle-card-front:hover {
+  box-shadow: 0 10px 20px var(--accent-shadow);
+  border-color: var(--accent-color);
+}
+
+.principle-card-front h3 {
+  margin: 0;
+  color: var(--accent-color);
+  transition: color 0.6s ease;
+  font-size: 1.2rem;
+}
+
+.principle-card-back {
+  transform: rotateY(180deg) translateZ(1px);
+  z-index: 1;
+  opacity: 0; /* Force it to be invisible initially */
+  border-color: var(--accent-color);
+  box-shadow: 0 5px 15px var(--accent-shadow);
+}
+
+.principle-card-back p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1.5;
+  transition: color 0.6s ease;
+}
+
+/* Swap opacity and z-index when flipped so the browser doesn't render both layers */
+.principle-card.flipped .principle-card-front {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none; /* Prevents accidentally hovering the invisible front */
+}
+
+.principle-card.flipped .principle-card-back {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* --- BLOG CARDS (Main Page) --- */
+.blog-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem; /* Generous padding for a "bigger" feel */
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.6s ease;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--accent-shadow);
+  border-color: var(--accent-color);
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  transition: border-color 0.6s ease;
+}
+
+.blog-card h2 {
+  margin: 0;
+  color: var(--accent-color);
+  transition: color 0.6s ease;
+  font-size: 1.5rem;
+}
+
+.blog-date {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: color 0.6s ease;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.blog-snippet {
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  transition: color 0.6s ease;
+}
+
+.blog-snippet p {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.read-more {
+  align-self: flex-start;
+  color: var(--text-muted);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.blog-card:hover .read-more {
+  color: var(--accent-color);
 }

@@ -1,0 +1,23 @@
+The launch of fieldghost.sh.
+
+I have been thinking of having a website for a long time, but I didn't have a purpose or a theme behind the website.
+
+With my transition to Bash, and directly inspired by You Suck at Programming (https://www.youtube.com/@YouSuckAtProgramming), I kept thinking of having a website to act as my anchor to keep me going with learning Bash.
+
+I also had, and still have, the idea that the website could be another resume in addition to my Github, to show off my skills.
+
+So here I am now writing my first blog about my own website https://fieldghost.sh so let's talk about the goals of the site:
+
+I want this website to be a rich "resource portal" to all the content that I consume and have consumed to make me the developer and individual I am.
+I want to highlight and promote Content creators (primarially on Youtube) that I enjoy.
+Open source is a major pillar for me, and I intent on promoting as much Open source I can. Hopefully I will be able to educate you in the importance of Open source.
+
+All content on this site is free to consume and is 100% open-source meaning it's available on my Github - https://github.com/fieldghost/fieldghost.sh.
+If you want to contribute directly to the project you are more than welcome to fork the repo.If you want to contribute in other to the project or other open-source projects, head over to the fieldghost::charity page.
+You are also welcome to contact me on fieldghost@pm.me for any inquiries related to this project or other topics. I will do my best to respond.
+
+
+Finally I just want to thank you for your visit to https://fieldghost.sh.
+
+
+//fieldghost

@@ -1,53 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fieldghost - Main</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-  <div id="main-body">
-    <div class="navigation">
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/scripts/theme.js"></script>
+    <script src="/scripts/blog.js"></script>
+  </head>
+  <body>
+    <div id="main-body">
+      <div class="navigation">
         <a href="/" class="active">fieldghost::main</a>
+        <a href="/blog">fieldghost::blog</a>
         <a href="/code">fieldghost::code</a>
         <a href="/media">fieldghost::media</a>
         <a href="/charity">fieldghost::charity</a>
         <a href="/about">fieldghost::about</a>
-        
-        <button id="theme-toggle" class="theme-switch">Initialize Ghost</button>
-    </div>
+        <a href="/settings">fieldghost::settings</a>
+      </div>
 
       <div class="container">
-        <h1>Welcome to main.</h1>
-        <p>The core system is online.</p>
+        <h1>Latest entries</h1>
+        <div id="blog-feed-container" class="blog-feed" data-limit="2"></div>
+        <div style="text-align: center; margin-top: 3rem; margin-bottom: 4rem">
+          <a href="/blog" class="theme-switch" style="text-decoration: none"
+            >View All Blog Entries</a
+          >
+        </div>
+
+        <hr
+          style="
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+          "
+        />
+
+        <h1>Latest news</h1>
+        <div class="intro-text" style="border-bottom: none; margin-bottom: 0">
+          <p style="color: var(--text-muted); font-style: italic">
+            Coming soon
+          </p>
+        </div>
       </div>
-    
-  </div>
-
-  <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check if user has a saved preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'ghost') {
-      body.classList.add('ghost-mode');
-      toggleBtn.textContent = 'Return to Terminal';
-    }
-
-    // Toggle event listener
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('ghost-mode');
-      
-      if (body.classList.contains('ghost-mode')) {
-        localStorage.setItem('theme', 'ghost');
-        toggleBtn.textContent = 'Return to Terminal';
-      } else {
-        localStorage.setItem('theme', 'terminal');
-        toggleBtn.textContent = 'Initialize Ghost';
-      }
-    });
-  </script>
-</body>
+    </div>
+  </body>
 </html>
