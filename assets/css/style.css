@@ -361,3 +361,130 @@ h1 {
 .blog-card:hover .read-more {
   color: var(--accent-color);
 }
+
+/* --- CODE EDITOR (/code/editor) --- */
+.container--code-editor {
+  max-width: 1280px;
+  width: 92%;
+}
+
+.code-editor-back {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+}
+
+.code-editor-back a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.code-editor-back a:hover {
+  text-decoration: underline;
+}
+
+.code-editor-roadmap-note {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.25rem;
+}
+
+.code-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.code-editor-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.code-editor-select {
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  min-width: 10rem;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+.code-editor-workbench {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .code-editor-workbench {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.code-editor-pane {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--container-bg);
+  overflow: hidden;
+  min-height: 360px;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.6s ease;
+}
+
+.code-editor-pane-title {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  transition:
+    border-color 0.3s ease,
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+.code-editor-ace {
+  flex: 1;
+  min-height: 320px;
+  width: 100%;
+}
+
+.code-editor-iframe {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  background-color: #fff;
+}
+
+html.terminal-mode .code-editor-iframe {
+  background-color: #1a1a1a;
+}
+
+.code-editor-status {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
