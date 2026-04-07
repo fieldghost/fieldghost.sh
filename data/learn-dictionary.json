@@ -1,0 +1,100 @@
+{
+  "subjects": {
+    "coding-languages": {
+      "label": "Coding Languages",
+      "entries": [
+        {
+          "title": "PowerShell",
+          "blurb": "Cross-platform shell and scripting from Microsoft; task automation and configuration.",
+          "freeLearning": [
+            {
+              "title": "Microsoft Learn — PowerShell fundamentals",
+              "url": "https://learn.microsoft.com/en-us/training/paths/powershell/",
+              "description": "Official free modules covering cmdlet basics, scripting, and automation."
+            },
+            {
+              "title": "PowerShell documentation",
+              "url": "https://learn.microsoft.com/en-us/powershell/",
+              "description": "Reference and conceptual guides maintained by Microsoft."
+            }
+          ]
+        },
+        {
+          "title": "Python",
+          "blurb": "High-level language popular for scripting, web, data, and tooling.",
+          "freeLearning": [
+            {
+              "title": "Python.org tutorial",
+              "url": "https://docs.python.org/3/tutorial/",
+              "description": "Official introduction shipped with the language documentation."
+            }
+          ]
+        }
+      ]
+    },
+    "programming": {
+      "label": "Programming",
+      "entries": [
+        {
+          "title": "Algorithms and data structures",
+          "blurb": "Core CS topics for interviews and resilient software.",
+          "freeLearning": [
+            {
+              "title": "MIT OpenCourseware — Introduction to Algorithms",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "description": "Full lecture materials and assignments (free to study)."
+            }
+          ]
+        }
+      ]
+    },
+    "devops": {
+      "label": "DevOps",
+      "entries": [
+        {
+          "title": "Git",
+          "blurb": "Distributed version control; foundation of most DevOps workflows.",
+          "freeLearning": [
+            {
+              "title": "Pro Git book",
+              "url": "https://git-scm.com/book/en/v2",
+              "description": "Free online edition of the standard Git reference."
+            }
+          ]
+        }
+      ]
+    },
+    "os-development": {
+      "label": "OS Development",
+      "entries": [
+        {
+          "title": "Operating systems concepts",
+          "blurb": "Processes, memory, filesystems, and concurrency at the kernel boundary.",
+          "freeLearning": [
+            {
+              "title": "OSTEP (Operating Systems: Three Easy Pieces)",
+              "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+              "description": "Free book-style chapters used widely for OS courses."
+            }
+          ]
+        }
+      ]
+    },
+    "game-development": {
+      "label": "Game Development",
+      "entries": [
+        {
+          "title": "Godot",
+          "blurb": "Open-source game engine with 2D and 3D tooling.",
+          "freeLearning": [
+            {
+              "title": "Godot documentation — step by step",
+              "url": "https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html",
+              "description": "Official getting-started path for the engine."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
