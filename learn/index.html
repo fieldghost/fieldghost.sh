@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn - Fieldghost</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/scripts/theme.js"></script>
+    <script src="/scripts/learn.js" defer></script>
+  </head>
+  <body>
+    <div id="main-body">
+      <div class="navigation">
+        <a href="/">fieldghost::main</a>
+        <a href="/blog">fieldghost::blog</a>
+        <a href="/code">fieldghost::code</a>
+        <a href="/media">fieldghost::media</a>
+        <a href="/learn" class="active">fieldghost::learn</a>
+        <a href="/charity">fieldghost::charity</a>
+        <a href="/settings">fieldghost::settings</a>
+      </div>
+
+      <div class="container" id="learn-root">
+        <h1>Learn</h1>
+
+        <div class="intro-text">
+          <p>
+            Browse topics by subject and letter. This is similar to an A–Z language
+            index like <a href="https://programminglanguages.info/languages/" target="_blank" rel="noopener noreferrer">programminglanguages.info</a>. 
+            </p>
+            <p>Pick a subject, a letter, then a topic to see curated <strong>free</strong> learning links.
+          </p>
+        </div>
+
+        <div id="learn-subject-tabs" class="learn-subject-tabs" aria-label="Subject"></div>
+
+        <div class="learn-layout">
+          <div class="learn-browse">
+            <div id="learn-letter-nav" class="learn-letter-nav" aria-label="First letter"></div>
+            <div id="learn-entry-list" class="learn-entry-list"></div>
+          </div>
+          <div id="learn-detail" class="learn-detail"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -7,40 +7,55 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="/scripts/theme.js"></script>
     <script src="/scripts/blog.js"></script>
+    <script src="/scripts/changelog.js" defer></script>
   </head>
   <body>
-    <div id="main-body">
+    <div id="main-body" class="home-page">
       <div class="navigation">
         <a href="/" class="active">fieldghost::main</a>
         <a href="/blog">fieldghost::blog</a>
         <a href="/code">fieldghost::code</a>
         <a href="/media">fieldghost::media</a>
+        <a href="/learn">fieldghost::learn</a>
         <a href="/charity">fieldghost::charity</a>
         <a href="/settings">fieldghost::settings</a>
       </div>
 
-      <div class="container">
-        <h1>Latest entries</h1>
-        <div id="blog-feed-container" class="blog-feed" data-limit="2"></div>
-        <div style="text-align: center; margin-top: 3rem; margin-bottom: 4rem">
-          <a href="/blog" class="theme-switch" style="text-decoration: none"
-            >View All Blog Entries</a
-          >
+      <div class="home-layout">
+        <div class="home-main">
+          <div class="container">
+            <h1>Latest entries</h1>
+            <div id="blog-feed-container" class="blog-feed" data-limit="2"></div>
+            <div style="text-align: center; margin-top: 3rem; margin-bottom: 4rem">
+              <a href="/blog" class="theme-switch" style="text-decoration: none"
+                >View All Blog Entries</a
+              >
+            </div>
+
+            <hr
+              style="
+                border: 0;
+                border-top: 1px solid var(--border-color);
+                margin-bottom: 3rem;
+              "
+            />
+
+            <h1>Latest news</h1>
+            <div class="intro-text" style="border-bottom: none; margin-bottom: 0">
+              <p style="color: var(--text-muted); font-style: italic">
+                Coming soon
+              </p>
+            </div>
+          </div>
         </div>
 
-        <hr
-          style="
-            border: 0;
-            border-top: 1px solid var(--border-color);
-            margin-bottom: 3rem;
-          "
-        />
-
-        <h1>Latest news</h1>
-        <div class="intro-text" style="border-bottom: none; margin-bottom: 0">
-          <p style="color: var(--text-muted); font-style: italic">
-            Coming soon
-          </p>
+        <div class="home-sections" aria-label="Additional sections">
+          <aside
+            id="changelog-root"
+            class="home-section changelog"
+            aria-label="Latest site update"
+            aria-live="polite"
+          ></aside>
         </div>
       </div>
     </div>
